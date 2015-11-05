@@ -1,6 +1,6 @@
 __author__ = 'Xu'
 
-import math
+from distance import Distance
 
 class KNNClassifier(object):
     def __init__(self, tdata):
@@ -19,18 +19,11 @@ class KNNClassifier(object):
         for t in self.tdata:
             self.classes[t[1]].append(t[0])
 
-    def edist(self, pt1, pt2):
-        dist = 0
-        for i in range(len(pt1)):
-            dist = dist+(pt1[i]-pt2[i])*(pt1[i]-pt2[i])
-        dist = math.sqrt(dist)
-        return dist
-
     def predict(self, sample, k):
         candidats = [{9999:0}]*k
         ids = [0]*k
         for i in range(len(self.tdata)):
-            dist = self.edist(sample, self.tdata[i][0])
+            dist = Distance.euclideanDist(sample, self.tdata[i][0])
             if dist < candidats[-1].keys()[0]:
                 candidats.sort()
                 candidats.pop()

@@ -26,4 +26,4 @@ class Data(object):
         #print self.mins, self.maxs
         for d in self.data:
             for i in range(len(d[0])):
-                d[0][i] = abs(d[0][i]-mins[i])/(maxs[i]-mins[i])
+                d[0][i] = abs(d[0][i]-self.mins[i])/(self.maxs[i]-self.mins[i])
